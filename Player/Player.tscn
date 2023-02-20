@@ -1,10 +1,11 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.png" type="Texture" id=2]
 [ext_resource path="res://HitHurtBoxes/Hitbox.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player/Shadows/MediumShadow.png" type="Texture" id=4]
+[ext_resource path="res://Shadows/MediumShadow.png" type="Texture" id=4]
 [ext_resource path="res://Player/SwordHitbox.gd" type="Script" id=5]
+[ext_resource path="res://HitHurtBoxes/Hurtbox.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.73723
@@ -322,7 +323,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=47]
+[sub_resource type="Animation" id=11]
 resource_name = "roll_left"
 length = 0.5
 tracks/0/type = "value"
@@ -352,7 +353,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=48]
+[sub_resource type="Animation" id=12]
 resource_name = "roll_right"
 length = 0.5
 tracks/0/type = "value"
@@ -382,7 +383,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=13]
 resource_name = "roll_up"
 length = 0.5
 tracks/0/type = "value"
@@ -412,7 +413,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=50]
+[sub_resource type="Animation" id=14]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -428,7 +429,7 @@ tracks/0/keys = {
 "values": [ 19, 20, 21, 22, 23, 18 ]
 }
 
-[sub_resource type="Animation" id=51]
+[sub_resource type="Animation" id=15]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -444,7 +445,7 @@ tracks/0/keys = {
 "values": [ 13, 14, 15, 16, 17, 12 ]
 }
 
-[sub_resource type="Animation" id=52]
+[sub_resource type="Animation" id=16]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -460,7 +461,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4, 5, 0 ]
 }
 
-[sub_resource type="Animation" id=53]
+[sub_resource type="Animation" id=17]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -604,6 +605,10 @@ graph_offset = Vector2( 0, -42.7089 )
 [sub_resource type="CapsuleShape2D" id=46]
 height = 15.0
 
+[sub_resource type="CapsuleShape2D" id=47]
+radius = 7.8615
+height = 9.3675
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 1 )
@@ -633,13 +638,13 @@ anims/idle_left = SubResource( 7 )
 anims/idle_right = SubResource( 8 )
 anims/idle_up = SubResource( 9 )
 anims/roll_down = SubResource( 10 )
-anims/roll_left = SubResource( 47 )
-anims/roll_right = SubResource( 48 )
-anims/roll_up = SubResource( 49 )
-anims/run_down = SubResource( 50 )
-anims/run_left = SubResource( 51 )
-anims/run_right = SubResource( 52 )
-anims/run_up = SubResource( 53 )
+anims/roll_left = SubResource( 11 )
+anims/roll_right = SubResource( 12 )
+anims/roll_up = SubResource( 13 )
+anims/run_down = SubResource( 14 )
+anims/run_left = SubResource( 15 )
+anims/run_right = SubResource( 16 )
+anims/run_up = SubResource( 17 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 44 )
@@ -663,4 +668,14 @@ script = ExtResource( 5 )
 shape = SubResource( 46 )
 disabled = true
 
+[node name="Hurtbox" parent="." instance=ExtResource( 6 )]
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( 0, -8 )
+shape = SubResource( 47 )
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+
 [editable path="HitboxPivot/SwordHitbox"]
+
+[editable path="Hurtbox"]

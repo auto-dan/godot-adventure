@@ -19,6 +19,8 @@ var state = CHASE
 onready var sprite = $AnimatedSprite
 onready var stats = $Stats
 onready var player_detection_zone = $PlayerDetectionZone
+onready var hurtbox = $Hurtbox
+onready var soft_collision = $SoftCollision
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -37,8 +39,9 @@ func _physics_process(delta):
 				velocty = velocty.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 			else:
 				state = IDLE
-
-	sprite.flip_h = velocty.x < 0
+			sprite.flip_h = velocty.x < 0
+	if soft_collision.is_colliding():
+		velocty += soft_collision.get_push_vector() * delta * 400 # <-- the higher the value the less lightly they overlap
 	velocty = move_and_slide(velocty)
 
 func seek_player():
@@ -49,6 +52,8 @@ func seek_player():
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage
 	knockback = area.knockback_vector * 120
+	hurtbox.start_invincibility(0.2)
+	hurtbox.create_hit_effect()
 
 func _on_Stats_no_health():
 	queue_free()
