@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SmallShadow.png-5e32714e38d94da2c1b597c947bda29e.stex"
+path="res://.import/MediumShadow.png-aa11177f0117df8c3338996ad499ca30.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Shadows/SmallShadow.png"
-dest_files=[ "res://.import/SmallShadow.png-5e32714e38d94da2c1b597c947bda29e.stex" ]
+source_file="res://Player/Shadows/MediumShadow.png"
+dest_files=[ "res://.import/MediumShadow.png-aa11177f0117df8c3338996ad499ca30.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false
