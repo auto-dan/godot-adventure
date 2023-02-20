@@ -627,6 +627,13 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [node name="World" type="Node2D"]
 position = Vector2( -16, 16 )
+scale = Vector2( 1.00099, 1.05509 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 64, 48 )
+scale = Vector2( 1, 1 )
+current = true
+smoothing_enabled = true
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 160, 90 )
@@ -664,6 +671,9 @@ __meta__ = {
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 64, 48 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../Camera2D")
 
 [node name="Bushes" type="YSort" parent="YSort"]
 
@@ -737,19 +747,15 @@ position = Vector2( 232, 120 )
 [node name="Enemies" type="YSort" parent="YSort"]
 
 [node name="Bat" parent="YSort/Enemies" instance=ExtResource( 6 )]
-position = Vector2( 232, 104 )
+position = Vector2( 287.714, 68.2406 )
 
 [node name="Bat2" parent="YSort/Enemies" instance=ExtResource( 6 )]
-position = Vector2( 232, 112 )
+position = Vector2( 199.801, 68.2406 )
 
-[node name="Bat3" parent="YSort/Enemies" instance=ExtResource( 6 )]
-position = Vector2( 136, 24 )
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Bat4" parent="YSort/Enemies" instance=ExtResource( 6 )]
-position = Vector2( 232, 8 )
-
-[node name="HealthUI" parent="." instance=ExtResource( 8 )]
-margin_left = 16.0
-margin_top = -16.0
-margin_right = 76.0
-margin_bottom = -5.0
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 8 )]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 60.0
+margin_bottom = 10.0
