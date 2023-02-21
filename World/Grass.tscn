@@ -6,7 +6,7 @@
 [ext_resource path="res://Shadows/SmallShadow.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.23099, 7.01738 )
+extents = Vector2( 8, 8 )
 
 [node name="Grass" type="Node2D"]
 script = ExtResource( 2 )
